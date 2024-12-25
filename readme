@@ -155,8 +155,10 @@ local function CreateHighlight(Player)
                 HighlightClone.OutlineColor = ESP_SETTINGS.ChamColor
             end
 
-        elseif not ESP_SETTINGS.Chams or not ESP_SETTINGS.Enabled and HighlightExists then
-            highlightExists:Destroy()
+        elseif not ESP_SETTINGS.Chams or not ESP_SETTINGS.Enabled then
+            if HighlightExists then
+                HighlightExists:Destroy()
+            end
         end  
     end
 end

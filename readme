@@ -25,7 +25,6 @@ local bones = {
 
 local Highlight = Instance.new("Highlight")
 Highlight.Name = "HighlightOnTop"
-Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
 Highlight.Parent = nil
 
 
@@ -138,7 +137,7 @@ print("lOADING")
 
 local function CreateHighlight(Player)
     if Player.Character then
-        local highlightExists = Player.Character:FindFirstChild("HighlightOnTop")
+        local HighlightExists = Player.Character:FindFirstChild("HighlightOnTop")
         
         if ESP_SETTINGS.Chams and ESP_SETTINGS.Enabled then
             if not highlightExists then
@@ -146,14 +145,17 @@ local function CreateHighlight(Player)
                 HighlightClone.Parent = Player.Character
                 HighlightClone.FillColor = ESP_SETTINGS.ChamColor
                 HighlightClone.OutlineColor = ESP_SETTINGS.ChamColor
-            elseif highlightExists and highlightExists.FillColor ~= ESP_SETTINGS.ChamColor then
-                highlightExists:Destroy()
+
+            elseif highlightExists and HighlightExists.FillColor ~= ESP_SETTINGS.ChamColor then
+                HighlightExists:Destroy()
+
                 local HighlightClone = Highlight:Clone()
                 HighlightClone.Parent = Player.Character
                 HighlightClone.FillColor = ESP_SETTINGS.ChamColor
                 HighlightClone.OutlineColor = ESP_SETTINGS.ChamColor
             end
-        elseif not ESP_SETTINGS.Chams and not ESP_SETTINGS.Enabled and highlightExists then
+
+        elseif not ESP_SETTINGS.Chams or not ESP_SETTINGS.Enabled and HighlightExists then
             highlightExists:Destroy()
         end  
     end
